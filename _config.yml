@@ -1,7 +1,7 @@
 # Site settings
 title: "JavaScript/TypeScript to C# Course"
 description: "Migration guide for web developers moving to C# and .NET"
-baseurl: "js-to-csharp-crash-course.github.io"
+baseurl: "js-to-csharp-crash-course"
 url: "https://jam-mar.github.io"
 
 # Course metadata

@@ -1,0 +1,88 @@
+# Site settings
+title: "JavaScript/TypeScript to C# Course"
+description: "Migration guide for web developers moving to C# and .NET"
+baseurl: "js-to-csharp-crash-course.github.io"
+url: "https://jam-mar.github.io"
+
+# Course metadata
+course:
+  title: "JS/TS to C# Migration Course"
+  subtitle: "For Web Developers"
+  version: "1.0"
+  author: "Your Name"
+  difficulty_levels:
+    - "beginner"
+    - "intermediate"
+    - "advanced"
+  categories:
+    - "getting-started"
+    - "language-fundamentals"
+    - "object-oriented"
+    - "advanced-topics"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+permalink: pretty
+
+# Collections for chapters
+collections:
+  chapters:
+    output: true
+    permalink: /:collection/:path
+
+# Default layouts for different content types
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "chapters"
+    values:
+      layout: "lesson"
+  - scope:
+      path: "chapters"
+    values:
+      layout: "lesson"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-toc
+
+# Exclude files from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+
+# Include files
+include:
+  - _pages
+
+# Markdown settings
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Course"
+    url: "/chapters/"
+  - title: "Resources"
+    url: "/resources/"
+  - title: "Code Samples"
+    url: "/code-samples/"

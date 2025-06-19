@@ -250,7 +250,7 @@ public int CalculateTotal(int price, double tax)
 
 You can see that in JavaScript, the function is defined without type annotations, while in TypeScript, types are added for parameters and return values. In C#, the method signature includes access modifiers (like `public`), and types must be explicitly declared for both parameters and return values.
 
-### Lambda Functions and Arrow Functions: Deep Dive
+### Lambda Functions vs Arrow Functions
 
 Lambda expressions and arrow functions are one of the most similar features between JavaScript/TypeScript and C#, yet they have important conceptual differences that are worth understanding in detail.
 
@@ -539,13 +539,6 @@ LINQ provides methods for filtering, aggregation, concatenation, and much more t
 | `slice()`         | `Take()` / `Skip()` | Get portion of collection    |
 
 **Async/Await**: C#'s async model is similar to JavaScript's but with better performance characteristics and more control.
-
-## Getting Started: Your First Steps
-
-1. **Install .NET SDK**: Download from [Microsoft's official site](https://dotnet.microsoft.com/download)
-2. **Choose Your Editor**: [Visual Studio](https://visualstudio.microsoft.com/), [VS Code](https://code.visualstudio.com/), or [JetBrains Rider](https://www.jetbrains.com/rider/)
-3. **Create Your First Project**: `dotnet new console -n MyFirstApp`
-4. **Run Your Code**: `dotnet run`
 
 ## Reference Links and Further Reading
 

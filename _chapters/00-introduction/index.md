@@ -458,7 +458,7 @@ LINQ provides methods for filtering, aggregation, concatenation, and much more t
 - [.NET Platform Overview](https://dotnet.microsoft.com/)
 - [ASP.NET Core documentation](https://learn.microsoft.com/en-us/aspnet/core/)
 - [Lambda expressions in C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
-- [Arrow functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - [Language Integrated Query (LINQ)](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
 - [Node.js TypeScript Support](https://nodejs.org/en/learn/typescript/run-natively)
 - [Anonymous Methods in C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/delegate-operator)

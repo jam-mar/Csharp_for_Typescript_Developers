@@ -1,5 +1,5 @@
 # Site settings
-title: "JavaScript/TypeScript to C# Course"
+title: "From JavaScript/TypeScript to C#: Developer Migration Guide"
 description: "Migration guide for web developers moving to C# and .NET"
 baseurl: "js-to-csharp-crash-course"
 url: "https://jam-mar.github.io"
@@ -16,9 +16,7 @@ course:
     - "advanced"
   categories:
     - "getting-started"
-    - "language-fundamentals"
-    - "object-oriented"
-    - "advanced-topics"
+    - "primitive-types"
 
 # Build settings
 markdown: kramdown
@@ -65,6 +63,7 @@ exclude:
   - Gemfile.lock
   - node_modules/
   - vendor/
+  - unused/
 
 # Include files
 include:
@@ -80,9 +79,5 @@ kramdown:
 navigation:
   - title: "Home"
     url: "/"
-  - title: "Course"
-    url: "/chapters/"
-  - title: "Resources"
-    url: "/resources/"
-  - title: "Code Samples"
-    url: "/code-samples/"
+  - title: "Getting Started"
+    url: "/chapters/00-introduction/"

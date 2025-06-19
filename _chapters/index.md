@@ -50,41 +50,7 @@ By the end of this chapter, you'll be able to:
 
 _15 minutes_
 
-Complete migration guide covering C-type languages, syntax comparisons, lambda expressions, LINQ equivalents to JavaScript array methods, and the mental shifts needed to transition from dynamic to statically-typed development.
-
-## Coming Soon
-
-**More chapters with hands-on exercises are coming soon!** This course will expand to include:
-
-- **Environment Setup** - Step-by-step .NET SDK installation and tooling setup
-- **Language Fundamentals** - Deep dive into C#'s type system and core features
-- **Object-Oriented Programming** - Classes, inheritance, and polymorphism in C#
-- **Functional Programming** - LINQ, pattern matching, and functional concepts
-- **ASP.NET Core** - Building web APIs and applications
-- **Testing and Debugging** - Unit testing and debugging techniques
-- **Practical Projects** - Real-world applications to solidify your learning
-
-## Prerequisites
-
-No specific prerequisites! This course assumes you have JavaScript or TypeScript experience and are ready to learn C#.
-
-## Time Commitment
-
-**Current estimated time:** {{ page.estimated_time }} minutes
-
-Additional chapters will add more content and hands-on exercises to reinforce your learning.
-
-## Getting Help
-
-If you have questions about the current content:
-
-1. **Review the comprehensive syntax comparisons** in the migration guide
-2. **Check the reference links** provided throughout the lesson
-3. **Refer to the official Microsoft documentation** linked in each section
-
-## Next Steps
-
-After reading the migration guide, you'll have a solid foundation for understanding C#'s relationship to JavaScript and TypeScript. Stay tuned for upcoming chapters that will provide hands-on experience and deeper exploration of C# development!
+Introduction to C# concepts that will be familiar to JavaScript and TypeScript developers, setting the foundation for your migration journey.
 
 ---
 

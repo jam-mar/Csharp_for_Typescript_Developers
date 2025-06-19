@@ -3,34 +3,53 @@ layout: default
 title: "Home"
 ---
 
-# JavaScript/TypeScript to C# Course
+# From JavaScript/TypeScript to C#: Developer Migration Guide
 
 Welcome to the comprehensive migration guide for JavaScript and TypeScript developers moving to C# and .NET!
 
 ## Course Overview
 
-This course is designed to help web developers transition smoothly from JavaScript/TypeScript to C# development.
+This course is designed to help web developers transition smoothly from JavaScript/TypeScript to C# development. Whether you're looking to work in enterprise environments, build robust web applications, or explore game development with Unity, this guide will help you make the leap.
 
 ### What You'll Learn
 
-- Fundamental differences between JS/TS and C#
-- C# syntax and language features
-- Object-oriented programming in C#
-- .NET ecosystem and tooling
+- **Fundamental differences** between JS/TS and C# development approaches
+- **C# syntax and language features** through familiar JavaScript/TypeScript comparisons
+- **Object-oriented programming** in C# with practical examples
+- **.NET ecosystem and tooling** for modern development
+- **Lambda expressions and LINQ** - leverage your functional programming knowledge
+- **ASP.NET Core** for building web APIs and applications
 
 ## Getting Started
 
-Start with [Chapter 0: Getting Started]({{ '/chapters/00-getting-started/' | relative_url }})
+Ready to begin your C# journey? Start with our comprehensive introduction:
+
+**[Chapter 0: Getting Started]({{ '/chapters/00-introduction/' | relative_url }})**
+
+This foundational chapter includes our detailed migration guide that covers everything you need to understand about transitioning from JavaScript/TypeScript to C#.
 
 ### Course Structure
 
-- **[Chapter 0: Getting Started]({{ '/chapters/00-getting-started/' | relative_url }})**
-- **[Chapter 1: Language Fundamentals]({{ '/chapters/01-language-fundamentals/' | relative_url }})**
-- **[Chapter 2: Object-Oriented Programming]({{ '/chapters/02-object-oriented/' | relative_url }})**
-- **[Chapter 3: Advanced Topics]({{ '/chapters/03-advanced-topics/' | relative_url }})**
+- **[Chapter 0: Getting Started]({{ '/chapters/00-introduction/' | relative_url }})** - Migration guide and fundamentals _(Available Now)_
+- **Next Chapter: Primitive Types** - C# data types, variables, and type system _(Coming Soon)_
+
+### What Makes This Course Different
+
+- **Built for JavaScript/TypeScript developers** - Every concept explained through familiar comparisons
+- **Practical examples** - Real code samples showing JS/TS vs C# approaches
 
 ## Resources
 
-- [Code Samples]({{ '/code-samples/' | relative_url }})
-- [Cheat Sheets]({{ '/resources/cheat-sheets/' | relative_url }})
-- [Reference Guides]({{ '/resources/reference-guides/' | relative_url }})
+- [Code Samples]({{ '/code-samples/' | relative_url }}) - Side-by-side JS/TS and C# examples
+- [Cheat Sheets]({{ '/resources/cheat-sheets/' | relative_url }}) - Quick reference for syntax differences
+- [Reference Guides]({{ '/resources/reference-guides/' | relative_url }}) - Deep-dive documentation
+
+## Course Progress
+
+**🚀 Currently Available:**
+
+- Chapter 0: Getting Started - Migration guide and fundamentals
+
+---
+
+_Ready to make the transition? [Start with Chapter 0: Getting Started]({{ '/chapters/00-introduction/' | relative_url }}) and begin your journey from JavaScript/TypeScript to C#!_

@@ -559,7 +559,7 @@ LINQ provides methods for filtering, aggregation, concatenation, and much more t
 
 As you begin this journey from JavaScript/TypeScript to C#, remember that your existing programming knowledge is valuable. The logical thinking, problem-solving skills, and understanding of programming concepts you've developed will serve you well. The main differences are in syntax, type system, and runtime environment – the core programming principles remain the same.
 
-Focus on understanding C#'s type system first, then gradually explore its object-oriented features, and finally dive into the rich .NET ecosystem. Your web development background gives you a solid foundation for understanding modern C# development, especially with technologies like ASP.NET Core for web APIs and Blazor for web applications.
+Focus on understanding C#'s type system first, then gradually explore its object-oriented features, and finally going into the rich .NET ecosystem. Your web development background gives you a solid foundation for understanding modern C# development, especially with technologies like ASP.NET Core for web APIs and Blazor for web applications.
 
 For a structured learning path, check out Microsoft's official [roadmap for JavaScript and TypeScript developers learning C#](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tips-for-javascript-developers), which provides additional guidance and examples to complement this guide.
 

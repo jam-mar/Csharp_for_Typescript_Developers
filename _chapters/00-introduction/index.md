@@ -33,9 +33,9 @@ layout: page
 
 Are you a JavaScript/TypeScript developer looking to make the move to C# and the .NET ecosystem? Maybe you want to work in enterprise environments, build robust web applications, or leverage the power of C# for game development with Unity.
 
-Whatever your motivation, transitioning from dynamic, interpreted languages like JavaScript and TypeScript to a statically-typed, compiled language like C# can be a significant shift. You may look at C# and think, why do I have to declare every variable type? Why do I need to compile my code before running it? Why does everything have to be so strict?
+Whatever your motivation, transitioning from dynamic, interpreted languages like JavaScript and TypeScript to a statically-typed, compiled language like C# can be a significant shift. You may look at C# and think: why do I have to declare every variable type? Why do I need to compile my code before running it? Why does everything have to be so strict?
 
-But let's be honest, while TypeScript has fixed many of the issues with JavaScript's dynamic typing, it can often be a frustrating experience with its complex type system and sometimes confusing error messages. Your code works fine, and its nearly time to slap in a pull requests, and call it when suddenly a wild `no overload matches this call` error appears. You fix it, but that created another error in a different file. You fix that, and then another error appears in a third file and now its one hour later and you still haven't finished your pull request. Well good news, none of that will happen in C#. The compiler will catch those errors before you even run your code, so you won't have 'code that works' that you can't commit.
+But let's be honest, while TypeScript has fixed many of the issues with JavaScript's dynamic typing, it can often be a frustrating experience with its complex type system and sometimes confusing error messages. Your code works fine, and it's nearly time to submit a pull request when suddenly a wild `no overload matches this call` error appears. You fix it, but that creates another error in a different file. You fix that, and then another error appears in a third file—and now it's one hour later and you still haven't finished your pull request. Well, good news: none of that will happen in C#. The compiler will catch those errors before you even run your code, so you won't have 'code that works' that you can't commit.
 
 ## Why C#?
 
@@ -54,6 +54,8 @@ C# is part of the broader [.NET ecosystem](https://dotnet.microsoft.com/), which
 **Diverse Application Types**: You can build web APIs with [ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/), desktop applications with WPF or WinUI, mobile apps with .NET MAUI, cloud-native applications, microservices, and even games with Unity.
 
 **ASP.NET Core**: Coming from web development, you'll particularly appreciate ASP.NET Core, Microsoft's modern, cross-platform framework for building web applications and APIs. It shares many concepts with Node.js frameworks like Express, including middleware pipelines, dependency injection, and RESTful routing, making the transition smoother for web developers.
+
+**Blazor for Web Development**: If you're building a web application, consider using [Blazor](https://learn.microsoft.com/en-us/aspnet/core/blazor/) to build your application. Blazor is a full-stack web framework built for .NET and C#. Blazor components can run on the server, as .NET assemblies, or on the client using WebAssembly. Blazor supports interop with your favorite JavaScript or TypeScript libraries, making it an excellent bridge technology for JS/TS developers moving to C#.
 
 ### Interpreted vs Compiled Languages
 
@@ -77,7 +79,29 @@ C# belongs to the **C family of languages**, which includes C, C++, Java, and ma
 
 **Multi-Paradigm Flexibility**: Modern C# (C# 9.0+) includes features like record types for immutable data, pattern matching for functional-style programming, and comprehensive LINQ support that enables declarative programming approaches familiar to JavaScript developers.
 
-## JavaScript/TypeScript vs C#: Key Differences and Similarities
+## JavaScript/TypeScript vs C#: Similarities That Help You Transition
+
+The good news is that JavaScript, TypeScript, and C# are all members of the C family of languages. These similarities help you quickly become productive in C#:
+
+### Shared Language Features
+
+**Similar Syntax**: The curly braces and semicolons are familiar. Control statements like `if`, `else`, `switch` are the same. Looping statements of `for`, `while`, and `do...while` are identical. The same keywords for `class` and `interface` exist in both C# and TypeScript.
+
+**Access Modifiers**: TypeScript and C# share the same access modifiers, from `public` to `private`.
+
+**The `=>` Token**: All languages support lightweight function definitions. In C#, they're referred to as lambda expressions; in JavaScript, they're typically called arrow functions.
+
+**Function Hierarchies**: All three languages support local functions—functions defined within other functions.
+
+**Async/Await**: All three languages share the same `async` and `await` keywords for asynchronous programming.
+
+**Garbage Collection**: All three languages rely on a garbage collector for automatic memory management.
+
+**Event Model**: C#'s event syntax is similar to JavaScript's model for document object model (DOM) events.
+
+**Package Management**: NuGet is the most common package manager for C# and .NET, similar to npm for JavaScript applications. C# libraries are delivered in assemblies.
+
+## Key Differences and New Concepts
 
 | Aspect                   | JavaScript            | TypeScript                    | C#                           |
 | ------------------------ | --------------------- | ----------------------------- | ---------------------------- |
@@ -93,6 +117,73 @@ C# belongs to the **C family of languages**, which includes C, C++, Java, and ma
 | **Package Management**   | npm/yarn              | npm/yarn                      | NuGet                        |
 | **Runtime**              | V8, Node.js           | V8, Node.js                   | .NET Runtime                 |
 | **Entry Point**          | Script execution      | Script execution              | `Main()` method              |
+
+### New Concepts Coming from JavaScript/TypeScript
+
+As you learn C#, you'll encounter concepts that aren't part of JavaScript, though some might be familiar if you use TypeScript:
+
+**Strong Type System**: C# is a strongly typed language. Every variable has a type, and that type can't change. You define class or struct types and interface definitions that specify behavior implemented by other types. TypeScript includes many of these concepts, but because TypeScript is built on JavaScript, the type system isn't as strict.
+
+**Pattern Matching**: Pattern matching enables concise conditional statements and expressions based on the shape of complex data structures. The `is` expression checks if a variable "is" some pattern. The pattern-based switch expression provides rich syntax to inspect a variable and make decisions based on its characteristics.
+
+```csharp
+// Pattern matching example
+public string DescribeType(object obj) => obj switch
+{
+    int i when i > 0 => "Positive integer",
+    int i when i < 0 => "Negative integer",
+    int => "Zero",
+    string s when string.IsNullOrEmpty(s) => "Empty string",
+    string => "Non-empty string",
+    _ => "Unknown type"
+};
+```
+
+**String Interpolation and Raw String Literals**: String interpolation enables you to insert evaluated expressions in a string, rather than using positional identifiers. Raw string literals provide a way to minimize escape sequences in text.
+
+```csharp
+// String interpolation
+var name = "John";
+var age = 25;
+var message = $"Hello, {name}! You are {age} years old.";
+
+// Raw string literals (C# 11+)
+var json = """
+{
+    "name": "John",
+    "age": 25,
+    "active": true
+}
+""";
+```
+
+**Nullable and Non-nullable Types**: C# supports nullable value types and nullable reference types by appending the `?` suffix to a type. For nullable types, the compiler warns you if you don't check for null before dereferencing. For non-nullable types, the compiler warns you if you might be assigning a null value. These features minimize your application throwing a `System.NullReferenceException`. The syntax might be familiar from TypeScript's use of `?` for optional properties.
+
+```csharp
+// Nullable reference types
+string? nullableName = null; // Can be null
+string nonNullableName = "John"; // Cannot be null
+
+// Nullable value types
+int? nullableNumber = null;
+int nonNullableNumber = 42;
+```
+
+**LINQ (Language Integrated Query)**: LINQ provides a common syntax to query and transform data, regardless of its storage. It's similar to JavaScript's array methods but more powerful and works across different data sources.
+
+### What's Not Available in C#
+
+Some familiar features from JavaScript and TypeScript aren't available in C#:
+
+**Dynamic Types**: C# uses static typing. A variable declaration includes the type, and that type can't change. There's a `dynamic` type in C# that provides runtime binding, but it's used sparingly.
+
+**Prototypal Inheritance**: C# inheritance is part of the type declaration. A C# class declaration states any base class. In JavaScript, you can set the `__proto__` property to set the base type on any instance.
+
+**Union Types**: C# doesn't support union types like TypeScript. However, design proposals are in progress.
+
+**Decorators**: C# doesn't have decorators. Some common decorators, such as `@sealed`, are reserved keywords in C#. Other common decorators might have corresponding Attributes. For other decorators, you can create your own attributes.
+
+**More Forgiving Syntax**: The C# compiler parses code more strictly than JavaScript requires.
 
 ## Syntax Similarities and Differences
 
@@ -125,6 +216,10 @@ C# requires explicit type declarations for all variables. This means that every 
 string name = "John";
 const int age = 25;
 bool isActive = true;
+
+// Or using type inference with 'var'
+var inferredName = "John"; // Compiler infers string
+var inferredAge = 25; // Compiler infers int
 ```
 
 ### Functions and Methods
@@ -455,8 +550,10 @@ LINQ provides methods for filtering, aggregation, concatenation, and much more t
 ## Reference Links and Further Reading
 
 - [Microsoft Learn - C# documentation](https://learn.microsoft.com/en-us/dotnet/csharp/)
+- [Tips for JavaScript Developers Learning C#](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tips-for-javascript-developers) - Microsoft's official roadmap
 - [.NET Platform Overview](https://dotnet.microsoft.com/)
 - [ASP.NET Core documentation](https://learn.microsoft.com/en-us/aspnet/core/)
+- [Blazor documentation](https://learn.microsoft.com/en-us/aspnet/core/blazor/)
 - [Lambda expressions in C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
 - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - [Language Integrated Query (LINQ)](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
@@ -470,5 +567,7 @@ LINQ provides methods for filtering, aggregation, concatenation, and much more t
 As you begin this journey from JavaScript/TypeScript to C#, remember that your existing programming knowledge is valuable. The logical thinking, problem-solving skills, and understanding of programming concepts you've developed will serve you well. The main differences are in syntax, type system, and runtime environment – the core programming principles remain the same.
 
 Focus on understanding C#'s type system first, then gradually explore its object-oriented features, and finally dive into the rich .NET ecosystem. Your web development background gives you a solid foundation for understanding modern C# development, especially with technologies like ASP.NET Core for web APIs and Blazor for web applications.
+
+For a structured learning path, check out Microsoft's official [roadmap for JavaScript and TypeScript developers learning C#](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tips-for-javascript-developers), which provides additional guidance and examples to complement this guide.
 
 Welcome to the C# community – you're going to love the journey!

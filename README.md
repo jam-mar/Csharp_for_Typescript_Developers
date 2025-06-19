@@ -2,13 +2,9 @@
 
 Go to [Course](https://jam-mar.github.io/js-to-csharp-crash-course/) to view the course.
 
-# JavaScript/TypeScript to C# Course
-
-Go to [Course](https://jam-mar.github.io/js-to-csharp-crash-course/) to view the course.
-
 ## About This Course
 
-This comprehensive course is designed to help JavaScript, TypeScript, and Node.js developers transition smoothly to the C# and .NET ecosystem. The course combines theoretical learning with practical application through a real-world project implementation.
+This comprehensive course is designed to help JavaScript, TypeScript, and Node.js developers transition to the C# and .NET ecosystem. The course combines theoretical learning with practical application through a real-world project implementation.
 
 ## Linked Project Repository
 

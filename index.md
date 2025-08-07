@@ -31,7 +31,7 @@ This foundational chapter includes our detailed migration guide that covers ever
 ### Course Structure
 
 - **[Chapter 0: Getting Started]({{ '/chapters/00-introduction/' | relative_url }})** - Migration guide and fundamentals _(Available Now)_
-- **Next Chapter: Primitive Types** - C# data types, variables, and type system _(Coming Soon)_
+- **[Chapter 1: Primitive Types]({{ '/chapters/01-types/' | relative_url }})** - Understanding C# data types for JS/TS developers _(Available Now)_
 
 ### What Makes This Course Different
 

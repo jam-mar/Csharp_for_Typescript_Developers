@@ -65,13 +65,17 @@ In JavaScript, primitive types include `number`, `string`, `boolean`, `null`, `u
 In TypeScript, type inference allows the compiler to automatically determine the type of a variable based on its value. C# also supports type inference with the `var` keyword, but it is limited to local variables and cannot be used for fields or properties.
 
 ```JavaScript
-let number = 42; // TypeScript infers 'number' from the value
-let userName = "Hello"; // TypeScript infers 'string'
+let number = 42;
+// TypeScript infers 'number' from the value
+let userName = "Hello";
+// TypeScript infers 'string'
 ```
 
 ```csharp
-var number = 42; // C# infers 'int'
-var userName = "Hello"; // C# infers 'string'
+var number = 42;
+// C# infers 'int'
+var userName = "Hello";
+// C# infers 'string'
 ```
 
 ### Explicit Type Declaration
@@ -79,13 +83,17 @@ var userName = "Hello"; // C# infers 'string'
 In TypeScript, you can explicitly declare types using annotations. C# requires explicit type declarations for variables, fields, and properties.
 
 ```TypeScript
-let age: number = 30; // Explicit type declaration
-let isActive: boolean = true; // Explicit type declaration
+let age: number = 30;
+// Explicit type declaration
+let isActive: boolean = true;
+ // Explicit type declaration
 ```
 
 ```csharp
-int age = 30; // Explicit type declaration
-string userName = "John"; // Explicit type declaration
+int age = 30;
+// Explicit type declaration
+string userName = "John";
+// Explicit type declaration
 ```
 
 In g
@@ -96,17 +104,20 @@ C# is a strongly typed language, meaning that type mismatches are caught at comp
 
 ```JavaScript
 let num = 42;
-num = "Hello"; // No error in javascript as the runtime will coerce the type from number to string. However, this can lead to bugs and is the whole point of TypeScript's type system.
+num = "Hello";
+// No error in javascript as the runtime will coerce the type from number to string. However, this can lead to bugs and is the whole point of TypeScript's type system.
 ```
 
 ```TypeScript
 let num: number = 42;
-num = "Hello"; // TypeScript error: Type 'string' is not assignable to type 'number'
+num = "Hello";
+// TypeScript error: Type 'string' is not assignable to type 'number'
 ```
 
 ```csharp
 int num = 42;
-num = "Hello"; // C# error: Cannot implicitly convert type 'string' to 'int'
+num = "Hello";
+// C# error: Cannot implicitly convert type 'string' to 'int'
 ```
 
 ### Compartive Examples
@@ -117,17 +128,20 @@ In JavaScript/TypeScript, strings are immutable and can be manipulated using var
 
 ```JavaScript
 let greeting = "Hello, World!";
-greeting = greeting.toUpperCase(); // "HELLO, WORLD!"
+greeting = greeting.toUpperCase();
+// "HELLO, WORLD!"
 ```
 
 ```TypeScript
 let greeting: string = "Hello, World!";
-greeting = greeting.toUpperCase(); // "HELLO, WORLD!"
+greeting = greeting.toUpperCase();
+// "HELLO, WORLD!"
 ```
 
 ```csharp
 string greeting = "Hello, World!";
-greeting = greeting.ToUpper(); // "HELLO, WORLD!"
+greeting = greeting.ToUpper();
+// "HELLO, WORLD!"
 ```
 
 #### Boolean
@@ -136,17 +150,20 @@ In JavaScript/TypeScript, booleans are straightforward. C# also uses `bool` for 
 
 ```JavaScript
 let isActive = true;
-isActive = false; // Valid
+isActive = false;
+// Valid
 ```
 
 ```TypeScript
 let isActive: boolean = true;
-isActive = false; // Valid
+isActive = false;
+// Valid
 ```
 
 ```csharp
 bool isActive = true;
-isActive = false; // Valid
+isActive = false;
+// Valid
 ```
 
 #### Number
@@ -154,21 +171,30 @@ isActive = false; // Valid
 In JavaScript/TypeScript, numbers can represent both integers and floating-point values. C# distinguishes between different numeric types, such as `int`, `float`, and `double`.
 
 ```JavaScript
-let count = 42; // Number type
-let price = 19.99; // Number type
-let hex = 0xFF; // Hexadecimal number
+let count = 42;
+// Number type
+let price = 19.99;
+// Number type
+let hex = 0xFF;
+// Hexadecimal number
 ```
 
 ```TypeScript
-let count: number = 42; // Number type
-let price: number = 19.99; // Number type
-let hex: number = 0xFF; // Hexadecimal number
+let count: number = 42;
+// Number type
+let price: number = 19.99;
+// Number type
+let hex: number = 0xFF;
+// Hexadecimal number
 ```
 
 ```csharp
-int count = 42; // Integer type
-double price = 19.99; // Double type
-int hex = 0xFF; // Hexadecimal integer
+int count = 42;
+// Integer type
+double price = 19.99;
+// Double type
+int hex = 0xFF;
+// Hexadecimal integer
 ```
 
 Here we can see that C# requires explicit type declarations for different numeric types, which helps prevent errors related to type coercion.
@@ -199,8 +225,10 @@ C# has several [integral numeric types](https://learn.microsoft.com/en-us/dotnet
 In this example byte size is used to store a small number, to save memory. Attempting to store a larger number in a smaller type will result in a compile-time error.
 
 ```csharp
-sbyte smallNumber = 100; // Valid
-smallNumber = 200; // Compile-time error: Cannot implicitly convert type 'int' to 'sbyte'
+sbyte smallNumber = 100;
+// Valid
+smallNumber = 200;
+// Compile-time error: Cannot implicitly convert type 'int' to 'sbyte'
 ```
 
 #### Floating-Point Types
@@ -208,7 +236,10 @@ smallNumber = 200; // Compile-time error: Cannot implicitly convert type 'int' t
 C# has two primary floating-point types: `float` and `double`. The `float` type is a single-precision 32-bit floating-point number, while `double` is a double-precision 64-bit floating-point number. The `decimal` type is also available for high-precision decimal numbers, often used in financial calculations.
 
 ```csharp
-float pi = 3.14f; // Single-precision
-double e = 2.718281828459045; // Double-precision
-decimal price = 19.99m; // High-precision decimal
+float pi = 3.14f;
+// Single-precision
+double e = 2.718281828459045;
+// Double-precision
+decimal price = 19.99m;
+// High-precision decimal
 ```

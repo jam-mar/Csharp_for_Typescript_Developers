@@ -206,7 +206,7 @@ Func<int[], int[]> processData = (data) => {
 };
 ```
 
-#### Alternative: Anonymous Methods in C#
+#### Alternative: Anonymous Methods in C
 
 C# also supports [anonymous methods using the `delegate` keyword](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/delegate-operator), which is more verbose but functionally similar:
 
@@ -420,7 +420,7 @@ In C#, method overloading based on parameter types is common and powerful. The s
 
 C# uses namespaces similar to TypeScript modules, but they're more integral to the language's organization system.
 
-## What You'll Love About C#
+## What You'll Love About C
 
 **IntelliSense and Tooling**: Visual Studio and VS Code provide exceptional autocomplete and error detection thanks to static typing.
 

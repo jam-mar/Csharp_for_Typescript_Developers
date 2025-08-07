@@ -41,8 +41,6 @@ This foundational chapter includes our detailed migration guide that covers ever
 ## Resources
 
 - [Code Samples]({{ '/code-samples/' | relative_url }}) - Side-by-side JS/TS and C# examples _(Coming Soon)_
-- [Cheat Sheets]({{ '/resources/cheat-sheets/' | relative_url }}) - Quick reference for syntax differences _(Coming Soon)_
-- [Reference Guides]({{ '/resources/reference-guides/' | relative_url }}) - Deep-dive documentation _(Coming Soon)_
 
 ## Course Progress
 

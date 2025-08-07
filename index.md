@@ -48,7 +48,10 @@ This foundational chapter includes our detailed migration guide that covers ever
 
 **🚀 Currently Available:**
 
-- Chapter 0: Getting Started - Migration guide and fundamentals
+- Chapter 0: Getting Started
+- Chapter 1: Program Structure & Domain Models
+- Chapter 2: Primitive Types
+- Chapter 3: Project Setup & Domain Models
 
 ---
 

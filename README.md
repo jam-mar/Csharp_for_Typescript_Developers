@@ -8,9 +8,9 @@ This comprehensive course is designed to help JavaScript, TypeScript, and Node.j
 
 ## Linked Project Repository
 
-This course content is directly linked to a **full-stack woodworking project** built with C#, .NET, ASP.NET Core, and React. The project is a tool to help woodworkers, furniture makers, and cabinet makers plan, visualize in 3D, and share their designs.
+This course content is directly linked to a **full-stack share trading application** built with C#, .NET, ASP.NET Core, and React. The project is a comprehensive trading platform that allows users to pull real-time market data, analyze stock performance, execute trades, and manage their investment portfolios.
 
-🔗 **[Woodworking Project Repository](https://github.com/jam-mar/woodworking-planner)** *(link will be updated when project repo is created)*
+🔗 **[Share Trading Project Repository](https://github.com/jam-mar/share-trading-platform)** _(link will be updated when project repo is created)_
 
 ### How the Repositories Work Together
 
@@ -24,6 +24,7 @@ This approach gives you both the theory and practical application side by side -
 ## Course Structure
 
 The course covers:
+
 - Transitioning from JavaScript/TypeScript mental models to C#
 - Understanding .NET ecosystem and tooling
 - ASP.NET Core for web development
@@ -51,7 +52,7 @@ Contributions are very welcome! I'm learning as I go, so there will no doubt be 
 ## Getting Started
 
 1. Start with the [Course](https://jam-mar.github.io/js-to-csharp-crash-course/)
-2. Follow along with the [Woodworking Project](https://github.com/jam-mar/woodworking-planner) *(coming soon)*
+2. Follow along with the [Woodworking Project](https://github.com/jam-mar/woodworking-planner) _(coming soon)_
 3. Check out specific branches mentioned in course modules
 4. Experiment with the code and concepts
 
@@ -61,4 +62,4 @@ Both repositories will evolve together as I continue learning and building. Watc
 
 ---
 
-*This is an open-source learning journey - let's learn C# and .NET together!*
+_This is an open-source learning journey - let's learn C# and .NET together!_

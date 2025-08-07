@@ -96,8 +96,6 @@ string userName = "John";
 // Explicit type declaration
 ```
 
-In g
-
 ### Type Safety
 
 C# is a strongly typed language, meaning that type mismatches are caught at compile time. This is different from JavaScript, where type coercion can lead to unexpected behavior at runtime. For example, in C#, trying to assign a string to an integer variable will result in a compile-time error.
@@ -124,12 +122,12 @@ num = "Hello";
 
 #### String
 
-In JavaScript/TypeScript, strings are immutable and can be manipulated using various methods. C# strings are also immutable and provide a rich set of methods for manipulation.
+In JavaScript/TypeScript, strings are immutable and can be manipulated using various methods. C# strings are also immutable and provide a rich set of methods for manipulation. While variables holding these primitive types can be reassigned to new values, the underlying values themselves cannot be altered.
 
 ```JavaScript
 let greeting = "Hello, World!";
 greeting = greeting.toUpperCase();
-// "HELLO, WORLD!"
+// "HELLO, WORLD!" greeting is reassigned to a new string value while the actual string value remains unchanged the greeting variable now points to a new string object. The original "Hello, World!" string still exists in memory (until garbage collection if no longer referenced).
 ```
 
 ```TypeScript

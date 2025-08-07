@@ -33,8 +33,6 @@ navigation:
 layout: page
 ---
 
-# Primitive Types in C# for JavaScript/TypeScript Developers
-
 In this chapter, we will explore the fundamental data types in C# and how they compare to those in JavaScript and TypeScript. Understanding these differences is crucial for a smooth transition from JS/TS to C#.
 
 ## Overview of C# Data Types

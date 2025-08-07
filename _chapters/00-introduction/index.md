@@ -29,8 +29,6 @@ navigation:
 layout: page
 ---
 
-# From JavaScript/TypeScript to C#: A Developer's Migration Guide
-
 Are you a JavaScript/TypeScript developer looking to make the move to C# and the .NET ecosystem? Maybe you want to work in enterprise environments, build robust web applications, or leverage the power of C# for game development with Unity.
 
 Whatever your motivation, transitioning from dynamic, interpreted languages like JavaScript and TypeScript to a statically-typed, compiled language like C# can be a significant shift. You may look at C# and think, why do I have to declare every variable type? Why do I need to compile my code before running it? Why does everything have to be so strict?

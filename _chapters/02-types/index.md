@@ -1,6 +1,6 @@
 ---
-title: "From JavaScript/TypeScript to C#: A Developer's Migration Guide"
-description: "Complete guide for JS/TS developers transitioning to C# and .NET"
+title: "Lesson 1: Types and Data Structures"
+description: "Introduction to C# data types for JavaScript/TypeScript developers"
 chapter: 1
 section: 1
 order: 1

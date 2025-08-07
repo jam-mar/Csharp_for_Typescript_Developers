@@ -1,5 +1,5 @@
 ---
-title: "From JavaScript/TypeScript to C#: A Developer's Migration Guide"
+title: "From JavaScript/TypeScript to C#: A Developer's Migration Guide - Introduction"
 description: "Complete guide for JS/TS developers transitioning to C# and .NET"
 chapter: 0
 section: 1

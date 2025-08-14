@@ -25,62 +25,54 @@ status: "published"
 featured: true
 navigation:
   previous: "03-project-setup"
-  next: null
+  next: "05-creating-a-web-api"
 layout: page
 ---
 
-So far, we have a well-structured project and a set of data models. But models are just data containers; they can't perform actions on their own. We need to introduce a service layer to contain our application's business logic. In this lesson, we'll build a `PortfolioService` to handle the core operations of buying and selling stock, and we'll learn how to properly structure our solution for better maintainability.
+We've got our data models, but they're just containers. Now we need to add the logic that actually _does_ things with our data. That's where services come in.
 
-## Structuring for Separation of Concerns
+## What's a Service Layer?
 
-In software architecture, a service layer is a design pattern that separates the business logic of an application from its presentation (UI) and data access layers. It acts as a middleman, orchestrating operations and ensuring that business rules are followed.
+Think of a service as the "brain" of your application. It contains all the business rules and logic, separate from your UI and database code.
 
-This is similar to how you might organize a Node.js application with separate directories like `models/`, `services/`, and `controllers/`. The service layer concept is identical - it's where your business logic lives, separate from your API routes and database access.
+In TypeScript, you might organize like this:
 
-To do this properly, we will create a new project dedicated to our business logic. Our solution will now have two projects:
+```
+src/
+  models/     # data structures
+  services/   # business logic
+  controllers/ # API endpoints
+```
 
-- **Core:** Contains our domain models (the "nouns") and service interfaces (the contracts)
-- **Application:** Contains our service implementations (the "verbs," or business logic)
+C# does the same thing, but with separate projects instead of folders.
 
-In a TypeScript project, you might have separate directories like `src/types/` for interfaces and models, and `src/services/` for business logic. C#'s project structure is more formal - each project is essentially a separate package with its own dependencies.
+## Setting Up Our Projects
+
+Let's create a proper structure with two projects:
+
+**Core** → The contracts and models  
+**Application** → The actual business logic
 
 ### Create the Application Project
 
-First, let's create a new class library for our services:
-
 ```bash
 dotnet new classlib -n Application -o Application
-```
-
-This is like running `npm init` to create a new package, or creating a new directory in your monorepo for a specific service.
-
-Next, add this new project to our solution file:
-
-```bash
 dotnet sln add Application/Application.csproj
 ```
 
-If you look at the `ShareTradingPlatform.sln` file, you'll see that it now includes the Application project.
+### Link the Projects
 
-### Add a Project Reference
-
-This is a critical step. Our new Application project needs to know about the models and interfaces in our Core project. We create a project reference to do this:
+Our Application needs to use stuff from Core:
 
 ```bash
 dotnet add Application/Application.csproj reference Core/Core.csproj
 ```
 
-This is similar to importing types from another package in your monorepo, or adding a dependency in `package.json`. The project reference tells .NET that Application can import and use classes from Core, just like how you'd `import { User } from '../types'` in TypeScript.
+This is like adding `import { User } from '../types'` in TypeScript.
 
-If you look at the `Application.csproj` file, you'll see that it now has a reference to the `Core` project. This command tells the .NET build tools that Application depends on Core, allowing us to use any public class from Core inside the Application project.
+## Define What Our Service Does
 
-## Defining the Service Interface
-
-Before we write the actual logic, we'll define an interface. An interface in C# is like a contract. It defines what a class can do, but not how it does it. This allows for loose coupling between different parts of our application.
-
-C# interfaces are very similar to TypeScript interfaces! They define the shape of an object or class without implementing the logic. The main difference is that C# interfaces can define method signatures, while TypeScript interfaces typically define data structures.
-
-Create a new file in your Core project for our interface:
+Before writing code, let's define what we want our service to do. We'll use an interface:
 
 ```csharp
 // Core/IPortfolioService.cs
@@ -92,95 +84,33 @@ public interface IPortfolioService
 }
 ```
 
-`Task` represents an asynchronous operation. It is a core component of the Task Parallel Library (TPL) and the Task-based Asynchronous Pattern (TAP), which are fundamental for writing responsive and scalable applications. The return type of `Task<T>` allows for asynchronous programming patterns, enabling methods to run in a non-blocking manner.
-
-In the above interface, the `BuyStockAsync` method is defined as returning a `Task<Portfolio>`, indicating that it will perform its work asynchronously and return a `Portfolio` object which we previously defined in the `Core/Portfolio.cs` file.
-
-This is similar to the TypeScript version:
+This is just like a TypeScript interface:
 
 ```typescript
 interface IPortfolioService {
   buyStock(
     userId: string,
-    stockTicker: string,
+    ticker: string,
     quantity: number
   ): Promise<Portfolio>;
 }
 ```
 
-Unlike JavaScript, which is single-threaded, C#'s async/await may be used on multiple threads concurrently allowing for more efficient use of resources and improved performance in I/O-bound applications.
+## Build the Service (Step by Step)
 
-**Key Points:**
+Now for the actual logic. Let's break it down into small, understandable pieces:
 
-- The interface lives in Core because it's part of the application's core definition, not its implementation. It defines the contract for the service without dictating how it should be implemented like TypeScript interfaces
-- The method is async and returns a `Task<Portfolio>`. C#'s `Task<T>` is equivalent to TypeScript's `Promise<T>`. The `async/await` pattern works almost identically in both languages
-
-## Updating Our Models
-
-Our service logic will need to track the average price of a holding. Let's update our Holding model to include this. While we're at it, let's ensure our Portfolio has its own unique ID.
-
-Update the following files in your Core project:
-
-```csharp
-// Core/Holding.cs
-namespace Core;
-
-// We add AveragePurchasePrice to track the cost basis of the holding.
-public record Holding(
-    Stock Stock,
-    decimal Quantity,
-    decimal AveragePurchasePrice
-);
-```
-
-```csharp
-// Core/Portfolio.cs
-namespace Core;
-
-// We add a unique Id to the portfolio itself.
-public record Portfolio(
-    Guid Id,
-    User User,
-    List<Holding> Holdings
-);
-```
-
-**TypeScript Comparison:** These records are similar to TypeScript interfaces or types:
-
-```typescript
-type Holding = {
-  stock: Stock;
-  quantity: number;
-  averagePurchasePrice: number;
-};
-
-type Portfolio = {
-  id: string;
-  user: User;
-  holdings: Holding[];
-};
-```
-
-## Implementing the Service
-
-Now, let's create the concrete class that implements our interface. This class will contain the actual logic for buying a stock. For now, we will hard-code some data to simulate having users and stocks available.
-
-Create a new file for the implementation in your new Application project:
+### 1. Set Up the Class Structure
 
 ```csharp
 // Application/PortfolioService.cs
 using Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Application;
 
 public class PortfolioService : IPortfolioService
 {
-    // --- In-memory data for simulation ---
-    // In a real app, this would come from a database.
+    // Mock data for now (normally this comes from a database)
     private readonly List<User> _users = new()
     {
         new User(Guid.NewGuid(), "testuser", "test@example.com")
@@ -193,24 +123,108 @@ public class PortfolioService : IPortfolioService
         new Stock("MSFT", "Microsoft Corp", 300.50m),
         new Stock("AAPL", "Apple Inc", 175.25m)
     };
-    // ------------------------------------
+}
+```
+
+### 2. Find the User and Stock
+
+```csharp
+public async Task<Portfolio> BuyStockAsync(Guid userId, string stockTicker, decimal quantity)
+{
+    // Find the user
+    var user = _users.FirstOrDefault(u => u.Id == userId);
+    if (user == null)
+        throw new ArgumentException("User not found.");
+
+    // Find the stock
+    var stock = _stocks.FirstOrDefault(s => s.TickerSymbol == stockTicker);
+    if (stock == null)
+        throw new ArgumentException("Stock not found.");
+}
+```
+
+### 3. Get or Create Portfolio
+
+```csharp
+// Find user's portfolio (or create new one)
+var portfolio = _portfolios.FirstOrDefault(p => p.User.Id == userId);
+if (portfolio == null)
+{
+    portfolio = new Portfolio(Guid.NewGuid(), user, new List<Holding>());
+    _portfolios.Add(portfolio);
+}
+```
+
+### 4. Handle the Stock Purchase
+
+```csharp
+// Check if user already owns this stock
+var existingHolding = portfolio.Holdings.FirstOrDefault(h => h.Stock.TickerSymbol == stockTicker);
+
+if (existingHolding != null)
+{
+    // Update existing holding with new average price
+    var oldValue = existingHolding.Quantity * existingHolding.AveragePurchasePrice;
+    var newValue = quantity * stock.CurrentPrice;
+    var totalQuantity = existingHolding.Quantity + quantity;
+    var newAveragePrice = (oldValue + newValue) / totalQuantity;
+
+    var updatedHolding = existingHolding with {
+        Quantity = totalQuantity,
+        AveragePurchasePrice = newAveragePrice
+    };
+
+    portfolio.Holdings.Remove(existingHolding);
+    portfolio.Holdings.Add(updatedHolding);
+}
+else
+{
+    // Create new holding
+    var newHolding = new Holding(stock, quantity, stock.CurrentPrice);
+    portfolio.Holdings.Add(newHolding);
+}
+
+return portfolio;
+```
+
+## The Complete Service
+
+Here's everything together, but now you understand each piece:
+
+<details>
+<summary>Click to see the full implementation</summary>
+
+```csharp
+// Application/PortfolioService.cs
+using Core;
+
+namespace Application;
+
+public class PortfolioService : IPortfolioService
+{
+    private readonly List<User> _users = new()
+    {
+        new User(Guid.NewGuid(), "testuser", "test@example.com")
+    };
+
+    private readonly List<Portfolio> _portfolios = new();
+
+    private readonly List<Stock> _stocks = new()
+    {
+        new Stock("MSFT", "Microsoft Corp", 300.50m),
+        new Stock("AAPL", "Apple Inc", 175.25m)
+    };
 
     public async Task<Portfolio> BuyStockAsync(Guid userId, string stockTicker, decimal quantity)
     {
-        // 1. Find the user and stock objects from our data source.
         var user = _users.FirstOrDefault(u => u.Id == userId);
         if (user == null)
-        {
-            throw new ArgumentException("User not found.", nameof(userId));
-        }
+            throw new ArgumentException("User not found.");
 
         var stock = _stocks.FirstOrDefault(s => s.TickerSymbol == stockTicker);
         if (stock == null)
-        {
-            throw new ArgumentException("Stock ticker not found.", nameof(stockTicker));
-        }
+            throw new ArgumentException("Stock not found.");
 
-        // 2. Find the user's portfolio (or create one if it doesn't exist).
         var portfolio = _portfolios.FirstOrDefault(p => p.User.Id == userId);
         if (portfolio == null)
         {
@@ -218,95 +232,210 @@ public class PortfolioService : IPortfolioService
             _portfolios.Add(portfolio);
         }
 
-        // 3. Find if the user already holds this stock.
-        var holding = portfolio.Holdings.FirstOrDefault(h => h.Stock.TickerSymbol == stockTicker);
+        var existingHolding = portfolio.Holdings.FirstOrDefault(h => h.Stock.TickerSymbol == stockTicker);
 
-        if (holding != null)
+        if (existingHolding != null)
         {
-            // 4a. User already owns this stock: update the existing holding by recalculating the average price.
-            var existingValue = holding.Quantity * holding.AveragePurchasePrice;
+            var oldValue = existingHolding.Quantity * existingHolding.AveragePurchasePrice;
             var newValue = quantity * stock.CurrentPrice;
-            var newTotalQuantity = holding.Quantity + quantity;
-            var newAveragePrice = (existingValue + newValue) / newTotalQuantity;
+            var totalQuantity = existingHolding.Quantity + quantity;
+            var newAveragePrice = (oldValue + newValue) / totalQuantity;
 
-            var updatedHolding = holding with {
-                Quantity = newTotalQuantity,
+            var updatedHolding = existingHolding with {
+                Quantity = totalQuantity,
                 AveragePurchasePrice = newAveragePrice
             };
 
-            // Replace the old holding with the updated one.
-            portfolio.Holdings.Remove(holding);
+            portfolio.Holdings.Remove(existingHolding);
             portfolio.Holdings.Add(updatedHolding);
         }
         else
         {
-            // 4b. User does not own this stock: create a new holding.
             var newHolding = new Holding(stock, quantity, stock.CurrentPrice);
             portfolio.Holdings.Add(newHolding);
         }
 
-        // 5. Create a trade record for this transaction.
-        var trade = new Trade(
-            Guid.NewGuid(),
-            user,
-            stock,
-            OrderType.Buy,
-            quantity,
-            DateTimeOffset.UtcNow
-        );
-
-        // In a real app, you would save the trade to a database here.
-        Console.WriteLine($"Trade recorded: {trade}");
-
-        // Return the updated portfolio. Task.FromResult wraps our result in a completed Task.
         return await Task.FromResult(portfolio);
     }
 }
 ```
 
-**TypeScript Equivalent Structure:** This service implementation would look similar in TypeScript:
+</details>
 
-```typescript
-class PortfolioService implements IPortfolioService {
-  private users: User[] = [
-    /* ... */
-  ];
-  private portfolios: Portfolio[] = [];
-  private stocks: Stock[] = [
-    /* ... */
-  ];
+## Key Takeaways
 
-  async buyStock(
-    userId: string,
-    stockTicker: string,
-    quantity: number
-  ): Promise<Portfolio> {
-    const user = this.users.find((u) => u.id === userId);
-    if (!user) {
-      throw new Error("User not found");
-    }
-    // ... rest of the logic
-  }
+- **Services contain business logic** - they're the "verbs" of your application
+- **Interfaces define contracts** - what the service can do, not how it does it
+- **Project references** work like imports in TypeScript
+- **C# async/await** is very similar to JavaScript promises
+
+The main difference from TypeScript is C#'s formal project structure, but the concepts are identical.
+
+## Testing Our Service
+
+Let's create a simple console app to test our service and see it in action.
+
+### Create a Console App
+
+```bash
+dotnet new console -n TestApp -o TestApp
+dotnet sln add TestApp/TestApp.csproj
+```
+
+### Add References
+
+Our test app needs to reference both Core and Application:
+
+```bash
+dotnet add TestApp/TestApp.csproj reference Core/Core.csproj
+dotnet add TestApp/TestApp.csproj reference Application/Application.csproj
+```
+
+### Write a Simple Test
+
+Replace the contents of `TestApp/Program.cs`:
+
+```csharp
+using Core;
+using Application;
+
+// Create our service
+var portfolioService = new PortfolioService();
+
+// Test buying some stock
+try
+{
+    // This will fail because we need a real user ID
+    // Let's get the actual user ID from our mock data first
+    Console.WriteLine("Testing our Portfolio Service...\n");
+
+    // For now, let's create a simple test
+    var userId = Guid.NewGuid(); // This won't work with our current setup
+    var portfolio = await portfolioService.BuyStockAsync(userId, "MSFT", 10);
+
+    Console.WriteLine($"Portfolio ID: {portfolio.Id}");
+    Console.WriteLine($"User: {portfolio.User.Username}");
+    Console.WriteLine($"Holdings: {portfolio.Holdings.Count}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error: {ex.Message}");
 }
 ```
 
-**Key Differences:**
+### Run the Test
 
-- C# uses `FirstOrDefault()` while TypeScript uses `find()`
-- C# has explicit type declarations (`List<User>`) while TypeScript can infer types
-- C# uses `Task.FromResult()` to wrap synchronous results in async methods
-- C# records use the `with` syntax for immutable updates, similar to the spread operator in TypeScript
+```bash
+cd TestApp
+dotnet run
+```
 
-## Summary
+You'll get an error because we're using a random user ID, but our service only has one hardcoded user.
 
-Congratulations! You've just built the heart of our application with a professional structure. We have:
+### Fix the Test
 
-- Learned about the service layer and its importance for separating concerns
-- Created a new Application project for our business logic
-- Added a project reference from Application to Core
-- Defined an interface (`IPortfolioService`) in Core to create a contract for our service
-- Implemented the `PortfolioService` in Application with the core business logic for buying stock
+Let's make our service more testable by exposing the user data:
 
-You'll notice that many concepts translate directly - interfaces, async/await, dependency management, and separation of concerns work similarly in both ecosystems. The main differences are in syntax and C#'s more formal project structure.
+```csharp
+// In Application/PortfolioService.cs, add this method:
+public User GetTestUser()
+{
+    return _users.First(); // Return the first (and only) user
+}
+```
 
-In the next lesson, we'll look at how to expose this service through a Web API so that a front-end application could interact with it.
+Now update your `Program.cs`:
+
+```csharp
+using Core;
+using Application;
+
+var portfolioService = new PortfolioService();
+
+try
+{
+    Console.WriteLine("=== Testing Portfolio Service ===\n");
+
+    // Get our test user
+    var testUser = portfolioService.GetTestUser();
+    Console.WriteLine($"Using test user: {testUser.Username}");
+
+    // Buy some Microsoft stock
+    Console.WriteLine("\n1. Buying 10 shares of MSFT...");
+    var portfolio = await portfolioService.BuyStockAsync(testUser.Id, "MSFT", 10);
+
+    Console.WriteLine($"✓ Portfolio created with ID: {portfolio.Id}");
+    Console.WriteLine($"✓ Holdings count: {portfolio.Holdings.Count}");
+
+    var holding = portfolio.Holdings.First();
+    Console.WriteLine($"✓ Stock: {holding.Stock.Name} ({holding.Stock.TickerSymbol})");
+    Console.WriteLine($"✓ Quantity: {holding.Quantity}");
+    Console.WriteLine($"✓ Average Price: ${holding.AveragePurchasePrice}");
+
+    // Buy more of the same stock
+    Console.WriteLine("\n2. Buying 5 more shares of MSFT...");
+    portfolio = await portfolioService.BuyStockAsync(testUser.Id, "MSFT", 5);
+
+    holding = portfolio.Holdings.First();
+    Console.WriteLine($"✓ Updated Quantity: {holding.Quantity}");
+    Console.WriteLine($"✓ New Average Price: ${holding.AveragePurchasePrice:F2}");
+
+    // Buy a different stock
+    Console.WriteLine("\n3. Buying 20 shares of AAPL...");
+    portfolio = await portfolioService.BuyStockAsync(testUser.Id, "AAPL", 20);
+
+    Console.WriteLine($"✓ Total holdings: {portfolio.Holdings.Count}");
+    foreach (var h in portfolio.Holdings)
+    {
+        Console.WriteLine($"  - {h.Stock.TickerSymbol}: {h.Quantity} shares @ ${h.AveragePurchasePrice:F2}");
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"❌ Error: {ex.Message}");
+}
+
+Console.WriteLine("\nPress any key to exit...");
+Console.ReadKey();
+```
+
+### Run It Again
+
+```bash
+dotnet run
+```
+
+You should see output like:
+
+```
+=== Testing Portfolio Service ===
+
+Using test user: testuser
+
+1. Buying 10 shares of MSFT...
+✓ Portfolio created with ID: 12345678-1234-1234-1234-123456789012
+✓ Holdings count: 1
+✓ Stock: Microsoft Corp (MSFT)
+✓ Quantity: 10
+✓ Average Price: $300.50
+
+2. Buying 5 more shares of MSFT...
+✓ Updated Quantity: 15
+✓ New Average Price: $300.50
+
+3. Buying 20 shares of AAPL...
+✓ Total holdings: 2
+  - MSFT: 15 shares @ $300.50
+  - AAPL: 20 shares @ $175.25
+```
+
+## What We've Built
+
+You now have a working service that:
+
+- Creates portfolios for users
+- Handles stock purchases
+- Calculates average purchase prices
+- Manages multiple holdings per portfolio
+
+Next up: We'll expose this service through a Web API so front-end apps can use it!

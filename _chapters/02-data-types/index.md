@@ -241,3 +241,23 @@ double e = 2.718281828459045;
 decimal price = 19.99m;
 // High-precision decimal
 ```
+
+#### Character Type
+
+C# has a `char` type for representing single 16-bit Unicode characters. This is similar to JavaScript's `string` type, but in C#, a `char` is a single character, while a `string` is a sequence of characters.
+
+```csharp
+char initial = 'A';
+// Single character
+string greeting = "Hello, World!";
+// Sequence of characteristics
+```
+
+#### Guid Type
+
+C# has a `Guid` type for representing globally unique identifiers. This is similar to JavaScript's `string` type, but in C#, a `Guid` is a 128-bit integer that is used to uniquely identify objects.
+
+```csharp
+Guid userId = Guid.NewGuid();
+// Generate a new unique identifier
+```

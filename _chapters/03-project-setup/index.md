@@ -1,5 +1,5 @@
 ---
-title: "Lesson 2: Project Setup & Domain Models"
+title: "Lesson 3: Project Setup"
 description: "Complete guide for JS/TS developers transitioning to C# and .NET"
 chapter: 3
 section: 1
@@ -56,7 +56,11 @@ Our domain models (the data types) don't need to be an executable application th
 dotnet new classlib -n Core -o Core
 ```
 
+You might notice this is different from Lesson 1, where we used `dotnet new console`. The console template creates a runnable application with a `Program.cs` entry point. Here, we're using classlib to create a library—a non-executable package of code (our models) intended to be shared and used by other projects. It doesn't have a Main method because it isn't meant to be run on its own.
+
 ### Add Project to Solution
+
+Now, let's add our new Core project to the solution.
 
 ```bash
 dotnet sln add Core/Core.csproj
@@ -125,7 +129,7 @@ A Trade represents a completed transaction. It brings together several data type
 
 - `Guid` for a unique Id
 - `string` for the StockTicker
-- `int` for the Quantity of shares, as you can't trade a fraction of a share
+- `int` for the Quantity of shares. While some platforms support fractional shares, we'll use an integer for simplicity in our application.
 - `decimal` for the Price at which the trade was executed
 - `DateTime` to record the exact time of the trade
 - `OrderType` to specify if it was a buy or sell order

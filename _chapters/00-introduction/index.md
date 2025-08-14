@@ -25,7 +25,7 @@ status: "published"
 featured: true
 navigation:
   previous: null
-  next: "environment-setup"
+  next: "01-program-structure"
 layout: page
 ---
 

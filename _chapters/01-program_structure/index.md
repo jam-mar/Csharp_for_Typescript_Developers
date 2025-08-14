@@ -29,6 +29,9 @@ navigation:
   previous: "introduction"
   next: "data-types"
 layout: page
+navigation:
+  previous: "00-introduction"
+  next: "02-data-types"
 ---
 
 Let's start our journey into C# by understanding the basic structure of a C# project and how to define domain models. This lesson will set the foundation for our Share Trading Platform application.

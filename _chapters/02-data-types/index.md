@@ -1,7 +1,7 @@
 ---
-title: "Lesson 1: Types and Data Structures"
+title: "Lesson 2: Data Types and Data Structures"
 description: "Introduction to C# data types for JavaScript/TypeScript developers"
-chapter: 1
+chapter: 2
 section: 1
 order: 1
 difficulty: "beginner"

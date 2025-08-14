@@ -1,5 +1,5 @@
 ---
-title: "Lesson 3: Project Setup"
+title: "Lesson 3: Solution Setup & Domain Modeling"
 description: "Complete guide for JS/TS developers transitioning to C# and .NET"
 chapter: 3
 section: 1

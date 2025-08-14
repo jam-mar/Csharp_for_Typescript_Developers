@@ -29,7 +29,7 @@ status: "published"
 featured: true
 navigation:
   previous: "01-program-structure"
-  next: "03-project-setup"
+  next: "03-solution-setup"
 layout: page
 ---
 

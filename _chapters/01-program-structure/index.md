@@ -131,3 +131,15 @@ class MainReturnValTest
     }
 }
 ```
+
+## 3.Top-Level Statements
+
+C# 9.0 introduced top-level statements, allowing you to write simple programs without explicitly defining a class or Main method. This feature is particularly useful for small scripts and quick prototypes.
+
+Here's a Program.cs file that is a complete C# program:
+
+```csharp
+Console.WriteLine("Hello World");
+```
+
+In this example, we directly use `Console.WriteLine` without wrapping it in a class or method. This makes the code more concise and easier to read, especially for beginners.

@@ -1,6 +1,6 @@
-# JavaScript/TypeScript to C# Course
+# Csharp_for_Typescript_Developers
 
-Go to [Course](https://jam-mar.github.io/js-to-csharp-crash-course/) to view the course.
+Go to [Course](https://jam-mar.github.io/Csharp_for_Typescript_Developers) to view the course.
 
 ## About This Course
 
@@ -10,7 +10,7 @@ This comprehensive course is designed to help JavaScript, TypeScript, and Node.j
 
 This course content is directly linked to a **full-stack share trading application** built with C#, .NET, ASP.NET Core, and React. The project is a comprehensive trading platform that allows users to pull real-time market data, analyze stock performance, execute trades, and manage their investment portfolios.
 
-🔗 **[Share Trading Project Repository](https://github.com/jam-mar/share-trading-platform)** _(link will be updated when project repo is created)_
+🔗 **[Share Trading Project Repository](https://github.com/jam-mar/c-_share_trading_project_files)**
 
 ### How the Repositories Work Together
 
@@ -51,8 +51,8 @@ Contributions are very welcome! I'm learning as I go, so there will no doubt be 
 
 ## Getting Started
 
-1. Start with the [Course](https://jam-mar.github.io/js-to-csharp-crash-course/)
-2. Follow along with the [Woodworking Project](https://github.com/jam-mar/woodworking-planner) _(coming soon)_
+1. Start with the [Course](https://jam-mar.github.io/Csharp_for_Typescript_Developers/)
+2. Follow along with the [Share Trading Project](https://github.com/jam-mar/c-_share_trading_project_files)
 3. Check out specific branches mentioned in course modules
 4. Experiment with the code and concepts
 

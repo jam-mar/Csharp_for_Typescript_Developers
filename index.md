@@ -3,8 +3,6 @@ layout: default
 title: "Home"
 ---
 
-# From JavaScript/TypeScript to C#: Developer Migration Guide
-
 Welcome to the comprehensive migration guide for JavaScript and TypeScript developers moving to C# and .NET!
 
 ## Course Overview

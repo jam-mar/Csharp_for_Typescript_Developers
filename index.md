@@ -34,6 +34,7 @@ This foundational chapter includes our detailed migration guide that covers ever
 - **[Chapter 1: Program Structure & Domain Models]({{ '/chapters/01-program_structure/' | relative_url }})** - Understanding C# project structure and domain modeling for JS/TS developers _(Available Now)_
 - **[Chapter 2: Primitive Types]({{ '/chapters/02-types/' | relative_url }})** - Understanding C# data types for JS/TS developers _(Available Now)_
 - **[Chapter 3: Project Setup & Domain Models]({{ '/chapters/03-project_setup/' | relative_url }})** - Setting up a C# project and defining domain models using records _(Available Now)_
+- **[Chapter 4: Building a Service]({{ '/chapters/04-building_a_service/' | relative_url }})** - Implementing a service layer for business logic and data handling _(Available Now)_
 
 ### What Makes This Course Different
 
@@ -51,7 +52,8 @@ This foundational chapter includes our detailed migration guide that covers ever
 - Chapter 0: Getting Started
 - Chapter 1: Program Structure & Domain Models
 - Chapter 2: Primitive Types
-- Chapter 3: Project Setup & Domain Models
+- Chapter 3: Project Setup
+- Chapter 4: Building a Service _(Available Now)_
 
 ---
 

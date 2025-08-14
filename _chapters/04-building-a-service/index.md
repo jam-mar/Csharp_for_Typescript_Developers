@@ -24,8 +24,8 @@ date: "2025-08-07"
 status: "published"
 featured: true
 navigation:
-  previous: "project-setup-and-domain-models"
-  next: "unit-testing"
+  previous: "03-project-setup"
+  next: null
 layout: page
 ---
 

@@ -6,17 +6,16 @@ url: "https://jam-mar.github.io"
 
 # Course metadata
 course:
-  title: "JS/TS to C# Migration Course"
-  subtitle: "For Web Developers"
+  title: "C# for TypeScript Developers"
+  subtitle: "A Migration Guide"
   version: "1.0"
   author: "Your Name"
   difficulty_levels:
     - "beginner"
     - "intermediate"
     - "advanced"
-  categories:
-    - "getting-started"
-    - "primitive-types"
+  keywords: ["C#", "TypeScript", "Migration", "Web Development"]
+  repository: "https://github.com/jam-mar/Csharp_for_Typescript_Developers"
 
 # Build settings
 markdown: kramdown

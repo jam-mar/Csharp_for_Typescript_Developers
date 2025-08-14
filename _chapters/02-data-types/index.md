@@ -28,8 +28,8 @@ date: "2025-08-07"
 status: "published"
 featured: true
 navigation:
-  previous: null
-  next: "environment-setup"
+  previous: "01-program-structure"
+  next: "03-project-setup"
 layout: page
 ---
 

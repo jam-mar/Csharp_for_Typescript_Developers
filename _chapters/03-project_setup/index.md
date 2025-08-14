@@ -28,8 +28,8 @@ date: "2025-08-07"
 status: "published"
 featured: true
 navigation:
-  previous: "data-types"
-  next: "services-and-logic"
+  previous: "02-data-types"
+  next: "04-building-a-service"
 layout: page
 ---
 

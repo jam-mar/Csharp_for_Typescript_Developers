@@ -29,7 +29,7 @@ navigation:
 layout: page
 ---
 
-So far, we have a well-structured project and a set of data models. But models are just data containers; they can't perform actions on their own. We need to introduce a service layer to contain our application's business logic. In this lesson, we'll build a PortfolioService to handle the core operations of buying and selling stock, and we'll learn how to properly structure our solution for better maintainability.
+So far, we have a well-structured project and a set of data models. But models are just data containers; they can't perform actions on their own. We need to introduce a service layer to contain our application's business logic. In this lesson, we'll build a `PortfolioService` to handle the core operations of buying and selling stock, and we'll learn how to properly structure our solution for better maintainability.
 
 ## Structuring for Separation of Concerns
 
@@ -39,15 +39,14 @@ This is similar to how you might organize a Node.js application with separate di
 
 To do this properly, we will create a new project dedicated to our business logic. Our solution will now have two projects:
 
-Core: Contains our domain models (the "nouns") and service interfaces (the contracts).
-
-Application: Contains our service implementations (the "verbs," or business logic).
+- **Core:** Contains our domain models (the "nouns") and service interfaces (the contracts)
+- **Application:** Contains our service implementations (the "verbs," or business logic)
 
 In a TypeScript project, you might have separate directories like `src/types/` for interfaces and models, and `src/services/` for business logic. C#'s project structure is more formal - each project is essentially a separate package with its own dependencies.
 
 ### Create the Application Project
 
-First, let's create a new class library for our services.
+First, let's create a new class library for our services:
 
 ```bash
 dotnet new classlib -n Application -o Application
@@ -55,17 +54,17 @@ dotnet new classlib -n Application -o Application
 
 This is like running `npm init` to create a new package, or creating a new directory in your monorepo for a specific service.
 
-Next, add this new project to our solution file.
+Next, add this new project to our solution file:
 
 ```bash
 dotnet sln add Application/Application.csproj
 ```
 
-If you look at the ShareTradingPlatform.sln file, you'll see that it now includes the Application project.
+If you look at the `ShareTradingPlatform.sln` file, you'll see that it now includes the Application project.
 
 ### Add a Project Reference
 
-This is a critical step. Our new Application project needs to know about the models and interfaces in our Core project. We create a project reference to do this.
+This is a critical step. Our new Application project needs to know about the models and interfaces in our Core project. We create a project reference to do this:
 
 ```bash
 dotnet add Application/Application.csproj reference Core/Core.csproj
@@ -73,9 +72,7 @@ dotnet add Application/Application.csproj reference Core/Core.csproj
 
 This is similar to importing types from another package in your monorepo, or adding a dependency in `package.json`. The project reference tells .NET that Application can import and use classes from Core, just like how you'd `import { User } from '../types'` in TypeScript.
 
-If you look at the `Application.csproj` file, you'll see that it now has a reference to the `Core` project.
-
-This command tells the .NET build tools that Application depends on Core, allowing us to use any public class from Core inside the Application project.
+If you look at the `Application.csproj` file, you'll see that it now has a reference to the `Core` project. This command tells the .NET build tools that Application depends on Core, allowing us to use any public class from Core inside the Application project.
 
 ## Defining the Service Interface
 
@@ -91,13 +88,13 @@ namespace Core;
 
 public interface IPortfolioService
 {
-  Task<Portfolio> BuyStockAsync(Guid userId, string stockTicker, decimal quantity);
+    Task<Portfolio> BuyStockAsync(Guid userId, string stockTicker, decimal quantity);
 }
 ```
 
 `Task` represents an asynchronous operation. It is a core component of the Task Parallel Library (TPL) and the Task-based Asynchronous Pattern (TAP), which are fundamental for writing responsive and scalable applications. The return type of `Task<T>` allows for asynchronous programming patterns, enabling methods to run in a non-blocking manner.
 
-So in the above interface, the `BuyStockAsync` method is defined as returning a `Task<Portfolio>`, indicating that it will perform its work asynchronously and return a `Portfolio` object which we previously defined in the `Core/Portfolio.cs` file.
+In the above interface, the `BuyStockAsync` method is defined as returning a `Task<Portfolio>`, indicating that it will perform its work asynchronously and return a `Portfolio` object which we previously defined in the `Core/Portfolio.cs` file.
 
 This is similar to the TypeScript version:
 
@@ -111,14 +108,12 @@ interface IPortfolioService {
 }
 ```
 
-Unlike Javascript, which is single-threaded, C#'s async/await may be used on multiple threads concurrently allowing for more efficient use of resources and improved performance in I/O-bound applications.
+Unlike JavaScript, which is single-threaded, C#'s async/await may be used on multiple threads concurrently allowing for more efficient use of resources and improved performance in I/O-bound applications.
 
-Key Points:
+**Key Points:**
 
-- The interface lives in Core because it's part of the application's core definition, not its implementation. It defines the contract for the service without dictating how it should be implemented like TypeScript interfaces.
-- The method is async and returns a `Task<Portfolio>`. In C#, a Task represents an asynchronous operation. It is a core component of the Task Parallel Library (TPL) and the Task-based Asynchronous Pattern (TAP), which are fundamental for writing responsive and scalable applications.
-
-C#'s `Task<T>` is equivalent to TypeScript's `Promise<T>`. The `async/await` pattern works almost identically in both languages.
+- The interface lives in Core because it's part of the application's core definition, not its implementation. It defines the contract for the service without dictating how it should be implemented like TypeScript interfaces
+- The method is async and returns a `Task<Portfolio>`. C#'s `Task<T>` is equivalent to TypeScript's `Promise<T>`. The `async/await` pattern works almost identically in both languages
 
 ## Updating Our Models
 
@@ -190,7 +185,9 @@ public class PortfolioService : IPortfolioService
     {
         new User(Guid.NewGuid(), "testuser", "test@example.com")
     };
+
     private readonly List<Portfolio> _portfolios = new();
+
     private readonly List<Stock> _stocks = new()
     {
         new Stock("MSFT", "Microsoft Corp", 300.50m),
@@ -232,7 +229,10 @@ public class PortfolioService : IPortfolioService
             var newTotalQuantity = holding.Quantity + quantity;
             var newAveragePrice = (existingValue + newValue) / newTotalQuantity;
 
-            var updatedHolding = holding with { Quantity = newTotalQuantity, AveragePurchasePrice = newAveragePrice };
+            var updatedHolding = holding with {
+                Quantity = newTotalQuantity,
+                AveragePurchasePrice = newAveragePrice
+            };
 
             // Replace the old holding with the updated one.
             portfolio.Holdings.Remove(holding);
@@ -301,12 +301,12 @@ class PortfolioService implements IPortfolioService {
 
 Congratulations! You've just built the heart of our application with a professional structure. We have:
 
-- Learned about the service layer and its importance for separating concerns.
-- Created a new Application project for our business logic.
-- Added a project reference from Application to Core.
-- Defined an interface (IPortfolioService) in Core to create a contract for our service.
-- Implemented the PortfolioService in Application with the core business logic for buying stock.
+- Learned about the service layer and its importance for separating concerns
+- Created a new Application project for our business logic
+- Added a project reference from Application to Core
+- Defined an interface (`IPortfolioService`) in Core to create a contract for our service
+- Implemented the `PortfolioService` in Application with the core business logic for buying stock
 
-**For TypeScript Developers:** You'll notice that many concepts translate directly - interfaces, async/await, dependency management, and separation of concerns work similarly in both ecosystems. The main differences are in syntax and C#'s more formal project structure.
+You'll notice that many concepts translate directly - interfaces, async/await, dependency management, and separation of concerns work similarly in both ecosystems. The main differences are in syntax and C#'s more formal project structure.
 
 In the next lesson, we'll look at how to expose this service through a Web API so that a front-end application could interact with it.

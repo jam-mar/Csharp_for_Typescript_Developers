@@ -102,9 +102,9 @@ A stock needs a ticker symbol and a name. For its price, we'll use the `decimal`
 namespace Core;
 
 public record Stock(
-        string TickerSymbol,
-        string CompanyName,
-        decimal CurrentPrice
+    string TickerSymbol,
+    string CompanyName,
+    decimal CurrentPrice
 );
 ```
 
@@ -127,25 +127,24 @@ public enum OrderType
 
 A Trade represents a completed transaction. It brings together several data types we've discussed:
 
-- `Guid` for a unique Id
-- `string` for the StockTicker
-- `int` for the Quantity of shares. While some platforms support fractional shares, we'll use an integer for simplicity in our application.
-- `decimal` for the Price at which the trade was executed
-- `DateTime` to record the exact time of the trade
-- `OrderType` to specify if it was a buy or sell order
+- `Guid` for the unique Id of the trade
+- `User` to associate the trade with a specific user (as defined in the User model)
+- `Stock` to specify which stock is being traded (as defined in the Stock model)
+- `OrderType` to indicate whether the trade is a buy or sell order
+- `decimal` for the Quantity of shares being traded
+- `DateTimeOffset` for the exact time the trade was executed
 
 ```csharp
 // Core/Trade.cs
 namespace Core;
 
 public record Trade(
-        Guid Id,
-        Guid UserId,
-        string StockTicker,
-        int Quantity,
-        decimal Price,
-        DateTime Timestamp,
-        OrderType OrderType
+    Guid Id,
+    User User,
+    Stock Stock,
+    OrderType OrderType,
+    decimal Quantity,
+    DateTimeOffset Timestamp
 );
 ```
 
@@ -153,15 +152,18 @@ public record Trade(
 
 A Holding represents the quantity of a specific stock a user owns in their portfolio.
 
+- User: The user who owns the holding
+- Stock: The stock being held
+- Quantity: The number of shares held
+
 ```csharp
 // Core/Holding.cs
-namespace Core;
-
 public record Holding(
-        string StockTicker,
-        int Quantity,
-        decimal AveragePurchasePrice
+    User User,
+    Stock Stock,
+    decimal Quantity
 );
+
 ```
 
 ### Portfolio.cs
@@ -170,14 +172,11 @@ Finally, the Portfolio ties everything together for a user. It has a unique Id a
 
 ```csharp
 // Core/Portfolio.cs
-using System.Collections.Generic;
-
 namespace Core;
 
 public record Portfolio(
-        Guid Id,
-        Guid UserId,
-        List<Holding> Holdings
+    User User,
+    List<Holding> Holdings
 );
 ```
 

@@ -9,7 +9,7 @@ course:
   title: "C# for TypeScript Developers"
   subtitle: "A Migration Guide"
   version: "1.0"
-  author: "Your Name"
+  author: "James Marriott"
   difficulty_levels:
     - "beginner"
     - "intermediate"
